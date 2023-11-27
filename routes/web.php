@@ -13,11 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::group([], function(){
     Route::get('/login','LoginController@login')->name('login');
     Route::post('/logar','LoginController@logar')->name('login-liberado');
+    Route::get('/registrar','RegistrarController@registrar')->name('registrar');
+    Route::post('/autenticar','RegistrarController@autenticar')->name('salvar-registro');
 });
 
+// Route::fallback(function(){
+//     return redirect()->route('login');
+// });
