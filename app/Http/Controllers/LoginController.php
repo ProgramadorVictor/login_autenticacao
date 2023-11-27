@@ -23,9 +23,17 @@ class LoginController extends Controller
             'nome' => $request->Username,
             'password' => $request->Password,
         ];
+        //User(); Trazer dados do banco.
         if (Auth::attempt(['name' => $request->Username, 'password' => $request->Password])) {
+            dd($dados);
+
+
+
+
+            dd(Auth::attempt(['name' => $request->Username, 'password' => $request->Password]));
             return "Sucesso";
         } else {
+            dd(Auth::attempt(['name' => $request->Username, 'password' => $request->Password]));
             dd("Não logou!");
         }
         // return redirect()->route('login');
