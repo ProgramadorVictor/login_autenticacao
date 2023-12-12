@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-10 col-md-6 col-lg-4 bg-warning rounded-3 border border-2 p-4">
-            <form autocomplete="off" method="post" action="{{route('salvar-registro')}}" id="registrar" name="registrar">
+            <form autocomplete="off" method="post" action="{{route('registro-salvo')}}" id="registrar" name="registrar">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label text-white">Email:</label>

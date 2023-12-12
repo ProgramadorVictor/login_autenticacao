@@ -5,8 +5,9 @@
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="col-10 col-md-6 col-lg-4 bg-warning rounded-3 border border-2 p-4">
-            <form autocomplete="off" method="post" action="{{route('login-liberado')}}" id="login" name="login">
+            <form autocomplete="off" method="post" action="{{route('login-autenticado')}}" id="login" name="login">
                 @csrf
+                <div class="text-center text-danger fw-bold" id="msg" name="Msg">{{isset($msg) ? $msg : ''}}</div>
                 <div class="mb-3">
                     <label for="username" class="form-label text-white">Usuário:</label>
                     <input value="{{old('Username')}}"type="text" class="form-control" id="username" name="Username" placeholder="Digite o nome de usuário">
@@ -33,12 +34,15 @@
     blur = executa tudo quando o elemento não está focado.
     */
     $(document).ready(function(){
-        $('#username').on('focus',function(){
-            $('#username-error').hide();
-        });
-        $('#password').on('focus',function(){
-            $('#password-error').hide();
-        });
+
+    });
+    $('#username').on('focus',function(){
+        $('#username-error').hide();
+        $('#msg').hide();
+    });
+    $('#password').on('focus',function(){
+        $('#password-error').hide();
+        $('#msg').hide();
     });
 </script>
 @endsection

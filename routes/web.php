@@ -13,18 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::group([], function(){
-    Route::get('/login','LoginController@login')->name('login');
-    Route::post('/logar','LoginController@logar')->name('login-liberado');
-    Route::get('/registrar','RegistrarController@registrar')->name('registrar');
-    Route::post('/autenticar','RegistrarController@autenticar')->name('salvar-registro');
+    Route::get('/login/{msg?}','AutenticarController@login')->name('login');
+    Route::post('/logar','AutenticarController@logar')->name('login-autenticado');
+    Route::get('/registrar','AutenticarController@registrar')->name('registrar');
+    Route::post('/registro-salvo','AutenticarController@salvar')->name('registro-salvo');
 });
-
-// Route::fallback(function(){
-//     return redirect()->route('login');
-// });
+Route::middleware(['autenticar'])->group(function(){
+    Route::get('/home', 'HomeController@index')->name('pagina-principal');
+});
