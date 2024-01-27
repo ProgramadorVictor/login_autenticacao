@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PrincipalController extends Controller
 {
     public function index()
     {
-        return view("pagina-principal.index");
+        return redirect()->route('login');
     }
 }

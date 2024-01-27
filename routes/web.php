@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([], function(){
+    Route::get('/','PrincipalController@index')->name('principal');
     Route::get('/login/{msg?}','AutenticarController@login')->name('login');
     Route::post('/logar','AutenticarController@logar')->name('login-autenticado');
     Route::get('/registrar','AutenticarController@registrar')->name('registrar');
@@ -22,3 +23,4 @@ Route::group([], function(){
 Route::middleware(['autenticar'])->group(function(){
     Route::get('/home', 'HomeController@index')->name('pagina-principal');
 });
+
