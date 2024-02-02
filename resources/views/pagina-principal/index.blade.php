@@ -1,1 +1,1 @@
-<div>Página liberar por middleware</div>
+@dd("Página liberada por middleware")

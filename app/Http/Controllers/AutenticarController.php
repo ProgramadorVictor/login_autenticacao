@@ -42,20 +42,34 @@ class AutenticarController extends Controller
     {
         return view('registrar.index');
     }
-    public function salvar(Request $request)
+    public function salvar(Request $req)
     {
-        $request->validate([
-            'Email' => 'required',
-            'Username' => 'required',
-            'Password' => 'required',
-        ]);
-
-        $user = new User();
-        $user->name = $request->Username;   
-        $user->email = $request->Email;
-        $user->password = $request->Password;
-        $user->save();
-
-        return redirect()->route('login');
+        $usuario = $req->Username;
+        $padrao = '/^[a-zA-Z]+\.[a-zA-Z]+$/';
+        $validar = preg_match($padrao, $usuario) ? $usuario : '';
+        if($validar){
+            $regras = [
+                'Email' => 'required|email',
+                'Username' => 'required|min:3|unique:users,name',
+                'Password' => 'required|min:6',
+            ];
+            $feedback = [
+                'required' => 'O campo :attribute é requerido.',
+                'Email.email' => 'O campo email deve ser um endereço de e-mail válido.',
+                'Username.min' => 'O campo usuário deve ter pelo menos :min caracteres.',
+                'Username.unique' => 'O campo usuario ja existe no banco de dados',
+                'Password.min' => 'A senha deve ter pelo menos :min caracteres.',
+            ];
+            $req->validate($regras, $feedback);
+            $user = new User();
+            $user->name = $req->Username;   
+            $user->email = $req->Email;
+            $user->password = md5($req->Password);
+            $user->save();
+            return redirect()->route('login', ['msg' => 'Cadastro realizado com sucesso!']);
+        }
+        $errors = new \Illuminate\Support\MessageBag();
+        $errors->add('Username', 'Seu usuário não segue o padrão ');
+        return redirect()->back()->withErrors($errors)->withInput($req->all());
     }
 }

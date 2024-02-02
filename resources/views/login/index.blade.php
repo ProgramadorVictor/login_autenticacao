@@ -29,12 +29,8 @@
 @endsection
 @section('scripts')
 <script>
-    /*
-    focus = executa tudo quando o elemento está focado.
-    blur = executa tudo quando o elemento não está focado.
-    */
     $(document).ready(function(){
-
+        $('#msg').text() == "Cadastro realizado com sucesso!" ? $('#msg').removeClass('text-danger').addClass('text-success') : $('#msg').removeClass('text-success').addClass('text-danger');
     });
     $('#username').on('focus',function(){
         $('#username-error').hide();
@@ -43,6 +39,10 @@
     $('#password').on('focus',function(){
         $('#password-error').hide();
         $('#msg').hide();
+    });
+    $('#acess').on('click', function(){
+        $('#msg').removeClass('text-success').text('S').show();
+        //Cadastro realizado com sucesso ainda.
     });
 </script>
 @endsection

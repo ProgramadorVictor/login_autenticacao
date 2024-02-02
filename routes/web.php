@@ -17,7 +17,7 @@ Route::group([], function(){
     Route::get('/','PrincipalController@index')->name('principal');
     Route::get('/login/{msg?}','AutenticarController@login')->name('login');
     Route::post('/logar','AutenticarController@logar')->name('login-autenticado');
-    Route::get('/registrar','AutenticarController@registrar')->name('registrar');
+    Route::get('/registrar/{feedback?}','AutenticarController@registrar')->name('registrar');
     Route::post('/registro-salvo','AutenticarController@salvar')->name('registro-salvo');
 });
 Route::middleware(['autenticar'])->group(function(){
